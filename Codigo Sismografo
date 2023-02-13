@@ -1,0 +1,30 @@
+byte trig = 7;
+byte echo = 8;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(trig, OUTPUT);
+  pinMode(echo, INPUT);
+
+}
+
+void loop()
+{
+  double d, t;
+  
+  digitalWrite(trig, LOW);
+  delayMicroseconds(4);
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig, LOW);
+  //pulseIn aravés de echo regresa el tiempo que la onda tardó en ir y regresar.
+  t = pulseIn(echo, HIGH);
+  t = t / 2;
+  d = t / 29.15;
+
+  Serial.println(d);
+  
+  delay(50);
+  
+}
